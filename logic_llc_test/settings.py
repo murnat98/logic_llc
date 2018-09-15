@@ -14,6 +14,8 @@ import configparser
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -31,6 +33,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'core.User'
+LOGIN_REDIRECT_URL = reverse_lazy('core:profile')
+LOGIN_URL = reverse_lazy('core:login')
 
 # Application definition
 
