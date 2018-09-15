@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'core.User'
 LOGIN_REDIRECT_URL = reverse_lazy('core:profile')
 LOGIN_URL = reverse_lazy('core:login')
+LOGOUT_REDIRECT_URL = reverse_lazy('core:login')
 
 # Application definition
 
