@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+{% load static %}
+
+{% block links %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'custom.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <form class="form" method="post" action="">
+        {% block form_header %}
+            <h1 class="h3 mb-3 font-weight-normal text-center">{{ form_header_text }}</h1>
+        {% endblock %}
+
+        {% csrf_token %}
+
+        {% for field in form %}
+            <label for="{{ field.id_for_label }}" class="sr-only">{{ field.label }}</label>
+            {% render_field field class='form-control' placeholder=field.label %}
+        {% endfor %}
+
+        {% block submit %}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ submit_text }}</button>
+        {% endblock %}
+
+        {% block post_form %}
+        {% endblock %}
+    </form>
+
+{% endblock %}

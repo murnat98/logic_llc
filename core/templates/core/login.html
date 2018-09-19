@@ -1,9 +1,24 @@
-{% extends 'base.html' %}
+{% extends 'form.html' %}
 
-{% block content %}
-    <form action="{% url 'core:login' %}" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Логин">
-    </form>
+{% load static %}
+
+{% block links %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'core/login.css' %}">
+{% endblock %}
+
+{% block form_header %}
+    {% with 'Логин' as form_header_text %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block submit %}
+    {% with 'Войти' as submit_text %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block post_form %}
+    <p class="small text-right">Нет аккаунта? <a href="{% url 'core:register' %}">Зарегистрируйтесь</a></p>
 {% endblock %}
