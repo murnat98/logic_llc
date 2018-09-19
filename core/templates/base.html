@@ -1,7 +1,16 @@
+{% load static %}
+
 <!doctype html>
 <html lang="ru">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block links %}
+        <link rel="stylesheet" href="{% static 'bootstrap-4-2/css/bootstrap.min.css' %}">
+    {% endblock %}
+
     {% block title %}
         {% include 'title.html' %}
     {% endblock %}
@@ -19,6 +28,8 @@
 
 {% block content %}
 {% endblock %}
+
+<script type="text/javascript" src="{% static 'bootstrap-4-2/js/bootstrap.min.js' %}"></script>
 
 </body>
 
