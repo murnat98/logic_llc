@@ -35,3 +35,7 @@ body {
 .form .form-control:focus {
     z-index: 2;
 }
+
+.transparent, .transparent:active {
+    background-color: transparent;
+}
