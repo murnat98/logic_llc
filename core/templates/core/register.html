@@ -1,9 +1,28 @@
-{% extends 'base.html' %}
+{% extends 'form.html' %}
 
-{% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Регистрация">
-    </form>
+{% load static %}
+
+{% block links %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'core/register.css' %}">
 {% endblock %}
+
+{% block form_header %}
+    {% with 'Регистрация' as form_header_text %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block submit %}
+    {% with 'Регистрация' as submit_text %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block post_form %}
+    <p class="small text-right">Есть аккаунт? <a href="{% url 'core:login' %}">Войти</a></p>
+{% endblock %}
+
+{# TODO: add help texts #}
+{# TODO: add error texts in forms #}
+{# TODO: edit profile page (design) #}
