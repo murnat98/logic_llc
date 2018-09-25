@@ -19,12 +19,6 @@
 
         {% for field in form %}
             {% if field.help_text %}
-                <div class="text-right">
-                    <button class="btn btn-sm transparent" type="button" data-toggle="modal"
-                            data-target="#modal-{{ field.auto_id }}">
-                        <i class="fa fa-question"></i>
-                    </button>
-                </div>
                 <div class="modal fade" role="dialog" id="modal-{{ field.auto_id }}">
                     <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
@@ -41,8 +35,16 @@
                     </div>
                 </div>
             {% endif %}
-            <label for="{{ field.id_for_label }}" class="sr-only">{{ field.label }}</label>
-            {% render_field field class='form-control' placeholder=field.label %}
+            <div>
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {% if field.help_text %}
+                    <button class="btn btn-sm transparent float-right" type="button" data-toggle="modal"
+                            data-target="#modal-{{ field.auto_id }}">
+                        <i class="fa fa-question"></i>
+                    </button>
+                {% endif %}
+            </div>
+            {% render_field field class='form-control' tabindex=2 %}
         {% endfor %}
 
         {% block submit %}
