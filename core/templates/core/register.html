@@ -1,12 +1,5 @@
 {% extends 'form.html' %}
 
-{% load static %}
-
-{% block links %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'core/register.css' %}">
-{% endblock %}
-
 {% block form_header %}
     {% with 'Регистрация' as form_header_text %}
         {{ block.super }}
@@ -23,6 +16,4 @@
     <p class="small text-right">Есть аккаунт? <a href="{% url 'core:login' %}">Войти</a></p>
 {% endblock %}
 
-{# TODO: help texts design improve #}
-{# TODO: add error texts in forms #}
 {# TODO: edit profile page (design) #}

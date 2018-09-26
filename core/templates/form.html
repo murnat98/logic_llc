@@ -5,15 +5,20 @@
 
 {% block links %}
     {{ block.super }}
-    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-{% endblock %}
-
-{% block content %}
-
     <form class="form" method="post" action="">
         {% block form_header %}
             <h1 class="h3 mb-3 font-weight-normal text-center">{{ form_header_text }}</h1>
         {% endblock %}
+
+        <div class="mt-4 mb-4">
+            {% if form.non_field_errors %}
+                <ul class="list-group">
+                    {% for error in form.non_field_errors %}
+                        <li class="list-group-item list-group-item-danger small">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
 
         {% csrf_token %}
 
@@ -35,7 +40,7 @@
                     </div>
                 </div>
             {% endif %}
-            <div>
+            <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
                 {% if field.help_text %}
                     <button class="btn btn-sm transparent float-right" type="button" data-toggle="modal"
@@ -43,16 +48,30 @@
                         <i class="fa fa-question"></i>
                     </button>
                 {% endif %}
+                {% render_field field class='form-control' tabindex=2 %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback d-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
             </div>
-            {% render_field field class='form-control' tabindex=2 %}
         {% endfor %}
 
         {% block submit %}
-            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ submit_text }}</button>
+            <div class="mt-4">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">{{ submit_text }}</button>
+            </div>
         {% endblock %}
 
         {% block post_form %}
         {% endblock %}
     </form>
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 {% endblock %}
