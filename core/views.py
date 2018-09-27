@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
@@ -22,6 +22,14 @@ class UserRegister(CreateView):
     template_name = 'core/register.html'
     form_class = RegisterForm
     success_url = reverse_lazy('core:profile')
+
+    def get_success_url(self):
+        """
+        Login user, before redirecting.
+        """
+        login(self.request, self.object)
+
+        return super().get_success_url()
 
     def dispatch(self, request, *args, **kwargs):
         """
