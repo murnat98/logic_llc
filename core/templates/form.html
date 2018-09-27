@@ -48,7 +48,11 @@
                 </div>
             {% endif %}
             <div class="form-group">
-                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                <label for="{{ field.id_for_label }}">{{ field.label }}:
+                    {% if field.field.required %}
+                        <small class="red">*</small>
+                    {% endif %}
+                </label>
                 {% if field.help_text %}
                     <button class="btn btn-sm transparent float-right" type="button" data-toggle="modal"
                             data-target="#modal-{{ field.auto_id }}">

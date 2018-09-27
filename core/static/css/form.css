@@ -39,3 +39,7 @@ body {
 .transparent, .transparent:active {
     background-color: transparent;
 }
+
+.red {
+    color: red;
+}
